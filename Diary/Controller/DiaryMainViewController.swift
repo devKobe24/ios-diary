@@ -24,7 +24,7 @@ class DiaryMainViewController: UIViewController {
         
         self.view.backgroundColor = .systemBackground
         self.navigationItem.title = "일기장"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: #selector(didTapAddDiaryButton))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddDiaryButton))
         
         addSubViews()
         diaryTableViewConstraints()
@@ -37,6 +37,9 @@ class DiaryMainViewController: UIViewController {
     }
     
     @objc private func didTapAddDiaryButton() {
+        let currentDate = DiaryDateFormatter.convertDate(Date(), Locale.current.identifier)
+        let makeDiaryViewController = MakeDiaryViewController(date: currentDate)
+        self.navigationController?.pushViewController(makeDiaryViewController, animated: true)
         print("didTapAddDiaryButton")
     }
     
