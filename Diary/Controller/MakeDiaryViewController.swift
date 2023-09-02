@@ -11,7 +11,7 @@ class MakeDiaryViewController: UIViewController {
     
     private let diaryTextView: UITextView = {
         let textView = UITextView()
-        textView.text = "오늘의 일기, 기분이 좋아 좋아, 기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아, 기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아기분이 좋아 좋아"
+       
         return textView
     }()
     
@@ -42,15 +42,14 @@ class MakeDiaryViewController: UIViewController {
         diaryTextViewConstraints()
         diaryTextView.keyboardDismissMode = .onDrag
         
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print(diaryTextView.selectedRange)
-        let newPosition = diaryTextView.selectedRange.location
-        var textViewPositionStart = UITextPosition()
-        textViewPosition = UITextRange().start
-        diaryTextView.textRange(from: textViewPosition, to: textViewPosition)
+//        print(diaryTextView.selectedRange)
+//        let newPosition = diaryTextView.selectedRange.location
+//        var textViewPositionStart = UITextPosition()
+//        textViewPosition = UITextRange().start
+//        diaryTextView.textRange(from: textViewPosition, to: textViewPosition)
         
     }
 }
@@ -68,7 +67,6 @@ extension MakeDiaryViewController {
         self.view.addSubview(diaryTextView)
     }
     
-    @available(iOS 15.0, *)
     private func diaryTextViewConstraints() {
         self.diaryTextView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -78,8 +76,6 @@ extension MakeDiaryViewController {
             diaryTextView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
             diaryTextView.bottomAnchor.constraint(equalTo: self.view.keyboardLayoutGuide.topAnchor)
         ])
-        
-        
     }
 }
 
