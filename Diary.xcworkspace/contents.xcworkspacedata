@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/johojun/Documents/StarterCamp/ios-diary/Diary/Model/DiaryEntity+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/johojun/Documents/StarterCamp/ios-diary/Diary/Model/DiaryEntity+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:Diary.xcodeproj">
    </FileRef>
    <FileRef

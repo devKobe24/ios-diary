@@ -63,9 +63,9 @@ final class DiaryTableViewCell: UITableViewCell {
         return attributedString
     }
     
-    private func formatCreatedAt(_ date: Int) -> String {
+    private func formatCreatedAt(_ date: Date) -> String {
         
-        return DiaryDateFormatter.fetchDate(date, Locale.current.identifier)
+        return DiaryDateFormatter.convertDate(date, Locale.current.identifier)
     }
 }
 

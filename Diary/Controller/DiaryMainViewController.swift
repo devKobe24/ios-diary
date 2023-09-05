@@ -24,11 +24,11 @@ final class DiaryMainViewController: UIViewController {
 
         configureUI()
         
-        do {
-            try decodeDiary()
-        } catch {
-            print(error.localizedDescription)
-        }
+//        do {
+//            try decodeDiary()
+//        } catch {
+//            print(error.localizedDescription)
+//        }
     }
     
     @objc private func didTapAddDiaryButton() {
@@ -36,19 +36,19 @@ final class DiaryMainViewController: UIViewController {
         self.navigationController?.pushViewController(detailDiaryViewController, animated: true)
     }
     
-    private func decodeDiary() throws {
-        let decoder = JSONDecoder()
-        
-        guard let dataAsset = NSDataAsset(name: "sample") else {
-            throw DecodeError.assetNotFound
-        }
-        
-        guard let decodedData = try? decoder.decode([Diary].self, from: dataAsset.data) else {
-            throw DecodeError.failed
-        }
-        
-        diarylist = decodedData
-    }
+//    private func decodeDiary() throws {
+//        let decoder = JSONDecoder()
+//
+//        guard let dataAsset = NSDataAsset(name: "sample") else {
+//            throw DecodeError.assetNotFound
+//        }
+//
+//        guard let decodedData = try? decoder.decode([Diary].self, from: dataAsset.data) else {
+//            throw DecodeError.failed
+//        }
+//
+//        diarylist = decodedData
+//    }
 }
 
 extension DiaryMainViewController {
