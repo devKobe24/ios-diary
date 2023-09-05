@@ -39,6 +39,8 @@ final class DetailDiaryViewController: UIViewController {
             NotificationCenter.default.addObserver(self, selector: #selector(willShowKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(willHideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didHideKeyboard), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -81,6 +83,10 @@ final class DetailDiaryViewController: UIViewController {
     
     @objc private func willHideKeyboard(_ notification: Notification) {
         diaryTextView.contentInset = UIEdgeInsets()
+    }
+    
+    @objc private func didHideKeyboard() {
+        saveDiaryData()
     }
 }
 
