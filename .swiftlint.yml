@@ -29,3 +29,4 @@ identifier_name:
 disabled_rules:
     - trailing_whitespace
     - line_length
+    - operator_whitespace
