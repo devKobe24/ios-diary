@@ -6,7 +6,7 @@
 
 import UIKit
 
-class DiaryMainViewController: UIViewController {
+final class DiaryMainViewController: UIViewController {
     private let diaryTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(DiaryTableViewCell.self, forCellReuseIdentifier: DiaryTableViewCell.identifier)

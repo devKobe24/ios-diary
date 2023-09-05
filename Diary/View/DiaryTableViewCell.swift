@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DiaryTableViewCell: UITableViewCell {
+final class DiaryTableViewCell: UITableViewCell {
     private let diaryTitle: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .title2)
@@ -39,7 +39,6 @@ class DiaryTableViewCell: UITableViewCell {
         
         addSubViews()
         contentStackViewConstraints()
-        
     }
     
     required init?(coder: NSCoder) {

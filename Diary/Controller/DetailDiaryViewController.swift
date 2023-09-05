@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailDiaryViewController: UIViewController {
+final class DetailDiaryViewController: UIViewController {
     private let diaryTextView: UITextView = {
         let textView = UITextView()
         
