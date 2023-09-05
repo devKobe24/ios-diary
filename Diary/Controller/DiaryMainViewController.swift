@@ -15,7 +15,7 @@ final class DiaryMainViewController: UIViewController {
     }()
 
     private let persistentContainer = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
-    private var diarylist: [Diary]?
+    private var diarylist: [DiaryEntity]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,12 @@ final class DiaryMainViewController: UIViewController {
     }
     
     @objc private func didTapAddDiaryButton() {
-        let detailDiaryViewController = DetailDiaryViewController()
+        guard let context = persistentContainer?.viewContext else { return }
+        
+        let diary = DiaryEntity(context: context)
+        diary.createdAt = Date()
+        
+        let detailDiaryViewController = DetailDiaryViewController(diary: diary)
         self.navigationController?.pushViewController(detailDiaryViewController, animated: true)
     }
     
@@ -124,7 +129,7 @@ extension DiaryMainViewController: UITableViewDelegate, UITableViewDataSource {
             return
         }
         
-        let detailDiaryViewController = DetailDiaryViewController()
+        let detailDiaryViewController = DetailDiaryViewController(diary: diary)
         detailDiaryViewController.fetchDiaryData(diary)
         
         navigationController?.pushViewController(detailDiaryViewController, animated: true)

@@ -18,37 +18,40 @@ final class DiaryPersistentContainer: NSPersistentContainer {
         }
     }
     
-    func createItem(_ item: Diary) {
-        let newItem = DiaryEntity(context: viewContext)
-        newItem.id = item.id
-        newItem.title = item.title
-        newItem.body = item.body
-        newItem.createdAt = item.createdAt
-        
-        saveContext()
-    }
+//    func createItem(_ item: Diary) {
+//        let newItem = DiaryEntity(context: viewContext)
+//        newItem.title = item.title
+//        newItem.body = item.body
+//        newItem.createdAt = item.createdAt
+//
+//        saveContext()
+//    }
     
-    func getAllItems() -> [Diary] {
+    func getAllItems() -> [DiaryEntity] {
         do {
-            let entities = try viewContext.fetch(DiaryEntity.fetchRequest())
-            var diaryList: [Diary] = []
-            
-            entities.forEach {
-                guard let id = $0.id,
-                      let title = $0.title,
-                      let body = $0.body,
-                      let createdAt = $0.createdAt else {
-                    return
-                }
-                
-                let diary = Diary(id: id, title: title, body: body, createdAt: createdAt)
-                diaryList.append(diary)
-            }
-            
-            return diaryList
+            return try viewContext.fetch(DiaryEntity.fetchRequest())
+//            var diaryList: [Diary] = []
+//
+//            entities.forEach {
+//                guard let id = $0.id,
+//                      let title = $0.title,
+//                      let body = $0.body,
+//                      let createdAt = $0.createdAt else {
+//                    return
+//                }
+//
+//                let diary = Diary(id: id, title: title, body: body, createdAt: createdAt)
+//                diaryList.append(diary)
+//            }
+//
+//            return diaryList
         } catch {
             print(error.localizedDescription)
             return []
         }
+    }
+    
+    func updateItem(_ item: DiaryEntity) {
+//        viewContext.registeredObjects.
     }
 }

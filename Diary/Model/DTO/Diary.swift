@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct Diary {
-    let id: UUID
-    var title: String
-    var body: String
-    let createdAt: Date
-//    
-//    private enum CodingKeys: String, CodingKey {
-//        case title, body
-//        case createdAt = "created_at"
-//    }
-}
+//struct Diary {
+//    let id: UUID
+//    var title: String
+//    var body: String
+//    let createdAt: Date
+////    
+////    private enum CodingKeys: String, CodingKey {
+////        case title, body
+////        case createdAt = "created_at"
+////    }
+//}

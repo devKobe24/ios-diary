@@ -16,7 +16,17 @@ final class DetailDiaryViewController: UIViewController {
     }()
     
     private let persistentContainer = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
-    private var diary = Diary(id: UUID(), title: .init(), body: .init(), createdAt: Date())
+    private var diary: DiaryEntity
+    
+    init(diary: DiaryEntity) {
+        self.diary = diary
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +47,16 @@ final class DetailDiaryViewController: UIViewController {
         saveDiaryData()
     }
     
-    func fetchDiaryData(_ data: Diary) {
-        diary = data
-        diaryTextView.text = "\(data.title)\n\(data.body)"
+    func fetchDiaryData(_ data: DiaryEntity) {
+        guard let title = data.title,
+              let body = data.body else {
+            return
+        }
         
-        configureNavigationItem(date: data.createdAt)
+        diary = data
+        diaryTextView.text = "\(title)\n\(body)"
+        
+        configureNavigationItem(date: data.createdAt ?? Date())
     }
     
     private func saveDiaryData() {
@@ -52,7 +67,7 @@ final class DetailDiaryViewController: UIViewController {
         diary.title = title
         diary.body = body
         
-        persistentContainer?.createItem(diary)
+        persistentContainer?.saveContext()
     }
     
     @objc private func willShowKeyboard(_ notification: Notification) {
