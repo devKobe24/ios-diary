@@ -21,6 +21,19 @@ final class DetailDiaryViewController: UIViewController {
         diaryTextView.delegate = self
 
         configureUI()
+        
+        if #unavailable(iOS 15.0) {
+            NotificationCenter.default.addObserver(self, selector: #selector(willShowKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        }
+    }
+    
+    @objc private func willShowKeyboard(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
+            return
+        }
+        
+        diaryTextView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: keyboardFrame.height, right: .zero)
     }
 }
 
@@ -29,7 +42,11 @@ extension DetailDiaryViewController {
         configureView()
         configureNavigationItem()
         addSubViews()
-        diaryTextViewConstraints()
+        if #available(iOS 15.0, *) {
+            diaryTextViewConstraints()
+        } else {
+            diaryTextViewConstraintsUnderIOS15()
+        }
     }
     
     private func configureView() {
@@ -44,6 +61,7 @@ extension DetailDiaryViewController {
         view.addSubview(diaryTextView)
     }
     
+    @available(iOS 15.0, *)
     private func diaryTextViewConstraints() {
         diaryTextView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -52,6 +70,17 @@ extension DetailDiaryViewController {
             diaryTextView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             diaryTextView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             diaryTextView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor)
+        ])
+    }
+    
+    private func diaryTextViewConstraintsUnderIOS15() {
+        diaryTextView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            diaryTextView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            diaryTextView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            diaryTextView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            diaryTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
