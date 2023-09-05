@@ -24,6 +24,7 @@ final class DetailDiaryViewController: UIViewController {
         
         if #unavailable(iOS 15.0) {
             NotificationCenter.default.addObserver(self, selector: #selector(willShowKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(willHideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         }
     }
     
@@ -34,6 +35,10 @@ final class DetailDiaryViewController: UIViewController {
         }
         
         diaryTextView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: keyboardFrame.height, right: .zero)
+    }
+    
+    @objc private func willHideKeyboard(_ notification: Notification) {
+        diaryTextView.contentInset = UIEdgeInsets()
     }
 }
 
