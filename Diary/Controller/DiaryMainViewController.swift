@@ -14,6 +14,7 @@ final class DiaryMainViewController: UIViewController {
         return tableView
     }()
 
+    private let persistentContainer = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     private var diarylist: [Diary]?
     
     override func viewDidLoad() {
@@ -29,6 +30,13 @@ final class DiaryMainViewController: UIViewController {
 //        } catch {
 //            print(error.localizedDescription)
 //        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        diarylist = persistentContainer?.getAllItems()
+        diaryTableView.reloadData()
     }
     
     @objc private func didTapAddDiaryButton() {

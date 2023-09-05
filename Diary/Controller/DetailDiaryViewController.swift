@@ -15,6 +15,9 @@ final class DetailDiaryViewController: UIViewController {
         return textView
     }()
     
+    private let persistentContainer = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    private var diary = Diary(id: UUID(), title: .init(), body: .init(), createdAt: Date())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,6 +29,23 @@ final class DetailDiaryViewController: UIViewController {
             NotificationCenter.default.addObserver(self, selector: #selector(willShowKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(willHideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        saveDiaryData()
+    }
+    
+    private func saveDiaryData() {
+        let titleAndBody = diaryTextView.text.split(separator: "\n")
+        let title = String(titleAndBody[safe: 0] ?? .init())
+        let body = String(titleAndBody[safe: 1] ?? .init())
+        
+        diary.title = title
+        diary.body = body
+        
+        persistentContainer?.createItem(diary)
     }
     
     @objc private func willShowKeyboard(_ notification: Notification) {

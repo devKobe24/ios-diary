@@ -9,8 +9,8 @@ import Foundation
 
 struct Diary {
     let id: UUID
-    let title: String
-    let body: String
+    var title: String
+    var body: String
     let createdAt: Date
 //    
 //    private enum CodingKeys: String, CodingKey {
