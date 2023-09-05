@@ -37,6 +37,13 @@ final class DetailDiaryViewController: UIViewController {
         saveDiaryData()
     }
     
+    func fetchDiaryData(_ data: Diary) {
+        diary = data
+        diaryTextView.text = "\(data.title)\n\(data.body)"
+        
+        configureNavigationItem(date: data.createdAt)
+    }
+    
     private func saveDiaryData() {
         let titleAndBody = diaryTextView.text.split(separator: "\n")
         let title = String(titleAndBody[safe: 0] ?? .init())
@@ -78,8 +85,8 @@ extension DetailDiaryViewController {
         view.backgroundColor = .systemBackground
     }
     
-    private func configureNavigationItem() {
-        navigationItem.title = DiaryDateFormatter.convertDate(Date(), Locale.current.identifier)
+    private func configureNavigationItem(date: Date = Date()) {
+        navigationItem.title = DiaryDateFormatter.convertDate(date, Locale.current.identifier)
     }
     
     private func addSubViews() {
