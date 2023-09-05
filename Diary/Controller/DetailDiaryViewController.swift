@@ -10,6 +10,7 @@ import UIKit
 final class DetailDiaryViewController: UIViewController {
     private let diaryTextView: UITextView = {
         let textView = UITextView()
+        textView.keyboardDismissMode = .onDrag
         
         return textView
     }()
@@ -17,18 +18,28 @@ final class DetailDiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemBackground
-        navigationItem.title = DiaryDateFormatter.convertDate(Date(), Locale.current.identifier)
-        
-        addSubViews()
-        diaryTextViewConstraints()
+        configureUI()
         
         diaryTextView.delegate = self
-        diaryTextView.keyboardDismissMode = .onDrag
     }
 }
 
 extension DetailDiaryViewController {
+    private func configureUI() {
+        configureView()
+        configureNavigationItem()
+        addSubViews()
+        diaryTextViewConstraints()
+    }
+    
+    private func configureView() {
+        view.backgroundColor = .systemBackground
+    }
+    
+    private func configureNavigationItem() {
+        navigationItem.title = DiaryDateFormatter.convertDate(Date(), Locale.current.identifier)
+    }
+    
     private func addSubViews() {
         view.addSubview(diaryTextView)
     }
