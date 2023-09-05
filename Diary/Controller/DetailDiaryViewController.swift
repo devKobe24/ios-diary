@@ -18,9 +18,9 @@ final class DetailDiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureUI()
-        
         diaryTextView.delegate = self
+
+        configureUI()
     }
 }
 

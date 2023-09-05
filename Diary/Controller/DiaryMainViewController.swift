@@ -21,13 +21,8 @@ final class DiaryMainViewController: UIViewController {
         
         diaryTableView.delegate = self
         diaryTableView.dataSource = self
-        
-        self.view.backgroundColor = .systemBackground
-        self.navigationItem.title = "일기장"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddDiaryButton))
-        
-        addSubViews()
-        diaryTableViewConstraints()
+
+        configureUI()
         
         do {
             try decodeDiary()
@@ -57,6 +52,22 @@ final class DiaryMainViewController: UIViewController {
 }
 
 extension DiaryMainViewController {
+    private func configureUI() {
+        configureView()
+        configureNavigationItem()
+        addSubViews()
+        diaryTableViewConstraints()
+    }
+    
+    private func configureView() {
+        view.backgroundColor = .systemBackground
+    }
+    
+    private func configureNavigationItem() {
+        navigationItem.title = "일기장"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddDiaryButton))
+    }
+    
     private func addSubViews() {
         view.addSubview(diaryTableView)
     }
