@@ -61,10 +61,10 @@ final class DetailDiaryViewController: UIViewController {
         configureNavigationItem(date: data.createdAt ?? Date())
     }
     
-    private func saveDiaryData() {
-        let titleAndBody = diaryTextView.text.split(separator: "\n")
-        let title = String(titleAndBody[safe: 0] ?? .init())
-        let body = String(titleAndBody[safe: 1] ?? .init())
+    func saveDiaryData() {
+        let splitedText = diaryTextView.text.split(separator: "\n")
+        let title = String(splitedText[safe: 0] ?? .init())
+        let body = String(diaryTextView.text.dropFirst(title.count))
         
         diary.title = title
         diary.body = body
