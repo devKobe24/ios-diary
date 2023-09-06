@@ -51,7 +51,8 @@ final class DiaryPersistentContainer: NSPersistentContainer {
         }
     }
     
-    func updateItem(_ item: DiaryEntity) {
-//        viewContext.registeredObjects.
+    func deleteItem(_ item: DiaryEntity) {
+        viewContext.delete(item)
+        saveContext()
     }
 }
