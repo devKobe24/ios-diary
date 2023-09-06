@@ -91,6 +91,15 @@ final class DetailDiaryViewController: UIViewController {
     
     @objc private func didTapShowMoreButton() {
         let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        sheet.addAction(makeShareAlertAction())
+        sheet.addAction(makeDeleteAlertAction())
+        sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        present(sheet, animated: true)
+    }
+    
+    private func makeShareAlertAction() -> UIAlertAction {
         let shareAction = UIAlertAction(title: "Share...", style: .default) { _ in
             guard let title = self.diary.title,
                   let body = self.diary.body else {
@@ -101,6 +110,11 @@ final class DetailDiaryViewController: UIViewController {
             
             self.present(activityController, animated: true)
         }
+        
+        return shareAction
+    }
+    
+    private func makeDeleteAlertAction() -> UIAlertAction {
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
             let alert = UIAlertController(title: "진짜요?", message: "정말 삭제하시겠어요?", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "취소", style: .default)
@@ -115,11 +129,7 @@ final class DetailDiaryViewController: UIViewController {
             self.present(alert, animated: true)
         }
         
-        sheet.addAction(shareAction)
-        sheet.addAction(deleteAction)
-        sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        
-        present(sheet, animated: true)
+        return deleteAction
     }
 }
 
