@@ -88,6 +88,39 @@ final class DetailDiaryViewController: UIViewController {
     @objc private func didHideKeyboard() {
         saveDiaryData()
     }
+    
+    @objc private func didTapShowMoreButton() {
+        let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let shareAction = UIAlertAction(title: "Share...", style: .default) { _ in
+            guard let title = self.diary.title,
+                  let body = self.diary.body else {
+                return
+            }
+            
+            let activityController = UIActivityViewController(activityItems: [title, body], applicationActivities: nil)
+            
+            self.present(activityController, animated: true)
+        }
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            let alert = UIAlertController(title: "진짜요?", message: "정말 삭제하시겠어요?", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "취소", style: .default)
+            let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { _ in
+                self.persistentContainer?.deleteItem(self.diary)
+                self.navigationController?.popViewController(animated: true)
+            }
+            
+            alert.addAction(cancelAction)
+            alert.addAction(deleteAction)
+            
+            self.present(alert, animated: true)
+        }
+        
+        sheet.addAction(shareAction)
+        sheet.addAction(deleteAction)
+        sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        present(sheet, animated: true)
+    }
 }
 
 extension DetailDiaryViewController {
@@ -108,6 +141,7 @@ extension DetailDiaryViewController {
     
     private func configureNavigationItem(date: Date = Date()) {
         navigationItem.title = DiaryDateFormatter.convertDate(date, Locale.current.identifier)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "더보기", style: .plain, target: self, action: #selector(didTapShowMoreButton))
     }
     
     private func addSubViews() {
