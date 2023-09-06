@@ -42,6 +42,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-        persistentContainer?.saveContext()
+        guard let navigationController = window?.rootViewController as? UINavigationController,
+              let diaryViewController = navigationController.topViewController as? DetailDiaryViewController else {
+            return
+        }
+        
+        diaryViewController.saveDiaryData()
     }
 }
