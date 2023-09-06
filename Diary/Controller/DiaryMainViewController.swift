@@ -136,12 +136,23 @@ extension DiaryMainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] contextualAction, view, completion in
-            guard let diarylist = self?.diarylist,
-                  let diary = diarylist[safe: indexPath.row] else {
-                completion(false)
+        guard let diarylist,
+              let diary = diarylist[safe: indexPath.row] else {
+            return UISwipeActionsConfiguration()
+        }
+        
+        let shareAction = UIContextualAction(style: .normal, title: "Share") { [weak self] contextualAction, view, completion in
+            guard let title = diary.title,
+                  let body = diary.body else {
                 return
             }
+            
+            let activityController = UIActivityViewController(activityItems: [title, body], applicationActivities: nil)
+            
+            self?.present(activityController, animated: true)
+        }
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] contextualAction, view, completion in
             
             self?.persistentContainer?.deleteItem(diary)
             self?.diarylist = self?.persistentContainer?.getAllItems()
@@ -149,6 +160,6 @@ extension DiaryMainViewController: UITableViewDelegate, UITableViewDataSource {
             completion(true)
         }
         
-        return UISwipeActionsConfiguration(actions: [deleteAction])
+        return UISwipeActionsConfiguration(actions: [deleteAction, shareAction])
     }
 }
