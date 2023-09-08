@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import CoreData
 
 final class DetailDiaryViewController: UIViewController {
+    private var container: NSPersistentContainer?
+    
     private let diaryTextView: UITextView = {
         let textView = UITextView()
         textView.keyboardDismissMode = .onDrag
@@ -21,6 +24,12 @@ final class DetailDiaryViewController: UIViewController {
         configureUI()
         configureDelegates()
         setupKeyboardEvent()
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        saveDiaryData()
     }
     
     private func configureDelegates() {
@@ -95,5 +104,49 @@ extension DetailDiaryViewController {
 extension DetailDiaryViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         textView.becomeFirstResponder()
+    }
+}
+
+extension DetailDiaryViewController {
+    private func saveDiaryData() {
+        guard let title = diaryTextView.text.split(separator: "\n").map({ String($0) })[safe: 0] else {
+            
+            return
+        }
+        
+        let body = String(diaryTextView.text.dropFirst(title.count))
+        
+        let currentDate = Date()
+        let unixTimeStamp = currentDate.timeIntervalSince1970
+        let createdAt = Int(unixTimeStamp)
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            
+            return
+        }
+        
+        container = appDelegate.persistentContainer
+        
+        guard let container = container else {
+            
+            return
+        }
+        
+        guard let entity = NSEntityDescription.entity(forEntityName: "DiaryContents", in: container.viewContext) else {
+            
+            return
+        }
+        
+        let diaryContentsObject = NSManagedObject(entity: entity, insertInto: container.viewContext)
+        
+        diaryContentsObject.setValue(title, forKey: "title")
+        diaryContentsObject.setValue(body, forKey: "body")
+        diaryContentsObject.setValue(createdAt, forKey: "createdAt")
+        
+        do {
+            try container.viewContext.save()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }
