@@ -7,4 +7,5 @@
 
 protocol LocationManagerDelegate: AnyObject {
     func fetchWeatherData(latitude: String, longtitude: String)
+    func showRequestLocationServiceAlert()
 }

@@ -24,7 +24,7 @@ final class LocationManager: NSObject {
     
     func requestLocation() {
         guard isAuthorized else {
-            print("설정해서 위치 정보를 허용해주세요: \(#function)")
+            delegate?.showRequestLocationServiceAlert()
             return
         }
         locationManager.requestLocation()
