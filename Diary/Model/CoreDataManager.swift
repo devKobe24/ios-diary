@@ -12,7 +12,24 @@ import UIKit
 final class CoreDataManager {
     static let shared: CoreDataManager = CoreDataManager()
     
-    private var container: NSPersistentContainer?
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "Diary")
+        container.loadPersistentStores { storeDescription, error in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        }
+        return container
+    }()
+    
+    var context: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
+    
+    var diaryContentsEntity: NSEntityDescription? {
+        return NSEntityDescription.entity(forEntityName: "DiaryContents", in: context)
+    }
+    
     private let appDelegate = {
         
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -21,6 +38,12 @@ final class CoreDataManager {
     }()
     
     private init() {}
+    
+    func insertDiaryContents(_ diary: Diary) {
+        if let entity = diaryContentsEntity {
+//            let managedObject = 
+        }
+    }
     
     // MARK: - READ
     func fetchDiaryContents() throws -> [DiaryContents] {
