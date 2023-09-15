@@ -33,6 +33,12 @@ final class DetailDiaryViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        saveDiaryData()
+    }
+    
     private func fetchDiaryData(_ data: DiaryEntity) {
         guard let title = data.title,
               let body = data.body,
@@ -77,7 +83,6 @@ extension DetailDiaryViewController {
     
     private func configureNavigationItem(date: Date = Date()) {
         navigationItem.title = DiaryDateFormatter.convertDate(date, Locale.current.identifier)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "일기장", style: .plain, target: self, action: #selector(didTapBackToMainButton))
         navigationItem.rightBarButtonItem =
         UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(didTapMoreOptionsButton))
     }
@@ -142,11 +147,6 @@ extension DetailDiaryViewController: UITextViewDelegate {
 }
 
 extension DetailDiaryViewController {
-    @objc private func didTapBackToMainButton() {
-        saveDiaryData()
-        navigationController?.popViewController(animated: true)
-    }
-    
     @objc private func didTapMoreOptionsButton() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let shareSheetAction = createShareSheetAction()
